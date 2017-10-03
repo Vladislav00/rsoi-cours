@@ -14,8 +14,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
+from django.conf.urls.static import static
+
+from prize.views import PrizeView, OrderView
+from prizes import settings
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
-]
+    url(r'^prize(\/(?P<prize>[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})?)?$', PrizeView.as_view()),
+    url(r'^order(\/(?P<order>[a-f0-9]{8}-([a-f0-9]{4}-){3}[a-f0-9]{12})?)?$', OrderView.as_view()),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+{% block title %}Магазин призов{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<br>
+{% if balance %}
+<div class="container">
+
+    <h5>Ваш баланс: {{balance}} бонусов</h5>
+
+    Отображать: <a href="\shop">Все</a> <a href="\shop\available">Только доступные</a>
+</div>
+{% endif %}
+{% if objects %}
+<ul class="list-unstyled">
+    {% for o in objects %}
+
+    <li class="media my-3">
+        <img class="d-flex mr-3" src="\prizeimg\{{o.pic}}" alt="Изображение">
+        <div class="media-body">
+            <a href="\shop\{{o.pk}}"><h5 class="mt-0 mb-1">{{o.title}}</h5></a>
+            {% if o.cost %}
+            Стоимость {{o.cost}} бонусов
+            {% else %}
+            Цена временно недоступна
+            {% endif %}
+        </div>
+    </li>
+
+    {% endfor %}
+</ul>
+<nav aria-label="Страницы">
+    <ul class="pagination">
+
+        {% if p.start_n %}
+        <li class="page-item">
+            <a class="page-link" href="?{{queries.urlencode}}&amp;page={{p.start_n}}" aria-label="В начало">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">First</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="В начало" tabindex="-1">
+                <span aria-hidden="true">&laquo;</span>
+                <span class="sr-only">First</span>
+            </a>
+        </li>
+        {% endif %}
+
+        {% if p.prev_n %}
+        <li class="page-item">
+            <a class="page-link" href="?{{queries.urlencode}}&amp;page={{p.prev_n}}" aria-label="Назад">
+                <span aria-hidden="true">&lt;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Назад" tabindex="-1">
+                <span aria-hidden="true">&lt;</span>
+                <span class="sr-only">Previous</span>
+            </a>
+        </li>
+        {% endif %}
+
+        <li class="page-item active">
+            <a class="page-link" href="?{{queries.urlencode}}&amp;page={{p.n}}">{{p.n}} <span
+                    class="sr-only">Страница</span></a>
+        </li>
+
+        {% if p.next_n %}
+        <li class="page-item">
+            <a class="page-link" href="?{{queries.urlencode}}&amp;page={{p.next_n}}" aria-label="Вперёд">
+                <span aria-hidden="true">&gt;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#" aria-label="Вперёд" tabindex="-1">
+                <span aria-hidden="true">&gt;</span>
+                <span class="sr-only">Next</span>
+            </a>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% else %}
+В данный момент призы недоступны. Повторите попытку позже.
+{% endif %}
+{% endblock %}

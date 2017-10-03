@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Вход{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>Авторизация</h2>
+        <form role="form" method="post" action="/sign/auth">
+
+        {% bootstrap_form lform %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Войти</button>
+        {% endbuttons %}
+        </form>
+        <div class="row">
+            <h5>Авторизоваться через:   </h5>
+            <a href="/auth/vk" style="margin-left:8px">
+                <img src="https://vk.com/images/icons/favicons/fav_logo.ico" style="width:16px;height:16px;border:0">
+            </a>
+            <a href="/auth/fb" style="margin-left:8px">
+                <img src="https://static.xx.fbcdn.net/rsrc.php/yl/r/H3nktOa7ZMg.ico" style="width:16px;height:16px;border:0">
+            </a>
+            <a href="/auth/go" style="margin-left:8px">
+                <img src="https://www.google.ru/images/branding/product/ico/googleg_lodp.ico" style="width:16px;height:16px;border:0">
+            </a>
+
+        </div>
+    </div>
+    <div class="col">
+        {% if success %}
+        <div class="alert alert-success" role="alert">
+            Вы успешно зарегестрированы. Теперь вы можете воспользоваться формой входа.
+        </div>
+        {% endif %}
+      <h2>Регистрация</h2>
+        <form role="form" method="post" action="/sign/reg">
+
+        {% bootstrap_form rform %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Загеристрироваться</button>
+        {% endbuttons %}
+        </form>
+    </div>
+  </div>
+</div>
+
+
+{% endblock %}

@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
-from django.contrib import admin
+
+from codes.views import BonusView
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    url(r'^code(\/(?P<code>[A-Z0-9]{8})?)?$', BonusView.as_view()),
 ]

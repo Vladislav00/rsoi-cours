@@ -31,40 +31,19 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
+    'authorization',
+
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
 ROOT_URLCONF = 'auth.urls'
 
 TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
+
 ]
 
 WSGI_APPLICATION = 'auth.wsgi.application'
@@ -118,3 +97,13 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
+
+PRIVATE_KEY = """-----BEGIN RSA PRIVATE KEY-----
+MIIBOwIBAAJBAJcbqAb6aNYQCFWagLngKAptIs2LfrCaZuFU4Qs9RiAvhvgRUBhi
+alP9r3LiRfSVEULIQiiM61bcqMcQgclPBlkCAwEAAQJAbGixEeCRWhJCiHfCJpiE
+4YYO0/xiNf1wFfU5R0D8kJWoAfH2of9YVSfP9C6wvcqr0nniJ1n6z9zGL97xeG2Z
+AQIhAPKbNyeYXydlsbNX01bVz3l8uhVCVRWpUjavxEGGqJOJAiEAn3NI22+Gt5Ci
+yhcq0+pt8iDG5oktjdzj71O3nRinmFECIE7cI16MigmtZcjtOHZWg91yrK4yZKPo
+6R97nOjL08o5AiEAjXGe98l/H+dWAR98BnC3B0q8JlUZ6/Y+3FbPUrREN4ECIQCo
+2c8Rnnt2+86YnZCqtS1KOfP70CQwOd/SQPhm1283sQ==
+-----END RSA PRIVATE KEY-----"""

@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% block title %}Вход{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+<div class="container">
+    <br>
+    <div class="row">
+        <h5>Ваш баланс: {{balance}} бонусов</h5>
+    </div>
+    <br>
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+
+
+                <h5>Привязать соцсеть: </h5>
+                <a href="/auth/bind/vk" style="margin-left:8px">
+                    <img src="https://vk.com/images/icons/favicons/fav_logo.ico"
+                         style="width:16px;height:16px;border:0">
+                </a>
+                <a href="/auth/bind/fb" style="margin-left:8px">
+                    <img src="https://static.xx.fbcdn.net/rsrc.php/yl/r/H3nktOa7ZMg.ico"
+                         style="width:16px;height:16px;border:0">
+                </a>
+                <a href="/auth/bind/go" style="margin-left:8px">
+                    <img src="https://www.google.ru/images/branding/product/ico/googleg_lodp.ico"
+                         style="width:16px;height:16px;border:0">
+                </a>
+
+                <h5>Настройки:</h5>
+                <form role="form" method="post">
+
+                    {% bootstrap_form form %}
+                    {% buttons %}
+                    <button type="submit" class="btn btn-secondary">Отправить</button>
+                    {% endbuttons %}
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+<br>
+<div class="row">
+    <a href="/me/orders" class="btn btn-primary">Мои заказы</a>
+
+</div>
+{% endblock %}

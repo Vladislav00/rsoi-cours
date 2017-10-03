@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Активировать код{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+{% if success %}
+        <div class="alert alert-success" role="alert">
+            Код успешно активирован.
+        </div>
+        {% endif %}
+    <form role="form" method="post">
+
+        {% bootstrap_form form %}
+        {% buttons %}
+            <button type="submit" class="btn btn-primary">Активировать</button>
+        {% endbuttons %}
+    </form>
+
+{% endblock %}

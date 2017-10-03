@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}Админка{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+
+<a href="./" class="btn btn-primary">Вверх</a>
+
+<form role="form" method="post" enctype="multipart/form-data">
+
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">Отправить</button>
+    {% endbuttons %}
+</form>
+
+{%if delform %}
+<form role="form" method="post" action="{{r.path}}/delete">
+
+    {% bootstrap_form delform %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">Удалить</button>
+    {% endbuttons %}
+</form>
+{% endif %}
+
+
+{% endblock %}

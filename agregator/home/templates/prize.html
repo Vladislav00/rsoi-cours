@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Заказ приза{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+{% if prize %}
+
+<div class="container">
+    <div class="media">
+        <img class="d-flex mr-3" src="/prizeimg/{{prize.pic}}" alt="Generic placeholder image">
+        <div class="media-body">
+            <h5 class="mt-0">{{prize.title}}</h5>
+            {% if prize.cost %}
+            Стоимость {{prize.cost}} бонусов.
+            {% else %}
+            Цена временно недоступна.
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% if can_order %}
+<h4>Заказать</h4>
+<form role="form" method="post">
+
+    {% bootstrap_form form %}
+    {% buttons %}
+    <button type="submit" class="btn btn-primary">Заказать</button>
+    {% endbuttons %}
+</form>
+{% else %}
+    <h4>К сожалению вам не хватает баллов для заказа</h4>
+{% endif %}
+
+{% else %}
+<div class="alert alert-warning" role="alert">
+  Призы временно недоступны.
+</div>
+
+{% endif %}
+
+{% endblock %}

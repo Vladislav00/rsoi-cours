@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}Админка{% endblock %}
+
+{% load bootstrap4 %}
+
+{% block content %}
+
+<nav class="nav flex-column">
+  <a class="nav-link" href="/admin/preferences">Настройки экономики</a>
+  <a class="nav-link" href="/admin/fabric">Регистрация фабрик</a>
+  <a class="nav-link" href="/admin/user">Пользователи</a>
+  <a class="nav-link" href="/admin/prize">Призы</a>
+  <a class="nav-link" href="/admin/order">Заказы</a>
+</nav>
+
+
+{% endblock %}
