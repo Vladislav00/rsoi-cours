@@ -14,20 +14,26 @@ if [[ $data == '' ]]; then
 	sudo make install
 	sudo mkdir /etc/redis
 	sudo cp "$d/redis.conf" /etc/redis/redis.conf
+	sudo adduser --system --group --no-create-home redis
+	sudo mkdir /var/redis
+	sudo chown redis:redis /var/redis
+	sudo chmod 770 /var/redis
 	sudo cp "$d/redis.service" /etc/systemd/system/redis.service
 	sudo systemctl enable redis
 	sudo systemctl start redis
 	cd "$d"
 fi 
 sudo apt-get install nginx
-sudo ln -s rsoikurs_nginx.conf /etc/nginx/sites-enabled/rsoikurs_nginx.conf
+sudo cp rsoikurs_nginx.conf /etc/nginx/sites-enabled/rsoikurs_nginx.conf
 sudo nginx -s reload
 sudo apt-get install python3
+sudo apt install python3-pip
 sudo pip3 install uwsgi
 
 python3 -m venv agregator/env
 cd agregator
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 deactivate
 cd ..
@@ -35,6 +41,7 @@ cd ..
 python3 -m venv auth/env
 cd auth
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 ./manage.py migrate
 ./manage.py createservicetoken
@@ -46,6 +53,7 @@ cp auth/service_credentials.txt agregator/service_credentials.txt
 python3 -m venv bonuscodes/env
 cd bonuscodes
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 deactivate
 cd ..
@@ -53,6 +61,7 @@ cd ..
 python3 -m venv economics/env
 cd economics
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 deactivate
 cd ..
@@ -60,6 +69,7 @@ cd ..
 python3 -m venv prizes/env
 cd prizes
 source env/bin/activate
+pip install wheel
 pip install -r requirements.txt
 ./manage.py migrate
 deactivate
